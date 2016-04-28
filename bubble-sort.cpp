@@ -4,8 +4,10 @@
 
 using namespace std;
 
+int size = 0;
+
 // fill array with user inputs
-void creatElement(int array[], int size){
+void creatElement(int array[]){
 	for(int i = 0; i < size; i++){
 		cin >> array[i];
 	}
@@ -19,7 +21,7 @@ void swap(int* big, int* small){
 }
 
 // sort array in increasing order
-void sort(int array[], int size){
+void sort(int array[]){
 	bool swapped = false;
 	do{
 		swapped = false;
@@ -34,7 +36,7 @@ void sort(int array[], int size){
 }
 
 // print out sorted array
-void print(int array[], int size){
+void print(int array[]){
 	for(int i = 0; i < size; i++){
 		printf("%d ", array[i]);
 	}
@@ -45,12 +47,13 @@ int main(){
 	printf("Enter number of elements: ");
 	cin >> numOfele;
 	int array[numOfele];
+	size = numOfele;
 
 	printf("Enter %d integers:\n", numOfele);
-	creatElement(array, numOfele);
+	creatElement(array);
 
 	printf("Start:\n");
-	sort(array, numOfele);
-	print(array, numOfele);
+	sort(array);
+	print(array);
 	printf("\nDone");
 }
