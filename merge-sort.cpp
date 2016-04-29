@@ -37,14 +37,12 @@ void merge(int array[], int first, int mid, int last){
 
 			break;
 		}
-
 		if(right > last){
 			for(int i = 0; i < (mid + 1 - first); i++, index++)
 				temp[index] = array[left + i];
 
 			break;
 		}
-
 		else{
 			if(array[left] <= array[right]){
 				temp[index] = array[left];
