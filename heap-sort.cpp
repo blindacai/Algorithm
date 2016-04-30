@@ -38,7 +38,7 @@ if not exist, return negtive
 */
 int compare(int array[], int index, int lchild, int rchild){
 	if(rchild >= 0){
-		if(array[index] > array[lchild] && array[index] > array[rchild]) return min(array, lchild, rchild);
+		if(array[index] > array[lchild] && array[rchild]) return min(array, lchild, rchild);
 		if(array[index] > array[rchild]) return rchild;
 	}
 	if(array[index] > array[lchild]) return lchild;
@@ -46,41 +46,32 @@ int compare(int array[], int index, int lchild, int rchild){
 }
 
 // swap down elements to maintain min heap feature
-void sinkDown(int array[], int index){
-	if(index > (size/2 - 1)) return;
+void sinkDown(int array[], int index, int offset){
+	if(index > ((size - offset)/2 - 1)) return;
 	else{
 		int lchild = 2*index + 1;
-		int rchild = (2*index + 2 > size - 1)? -1 : 2*index + 2;   // when size is even -> out of boundary
+		int rchild = (2*index + 2 > (size - offset) - 1)? -1 : 2*index + 2;   // when size is even -> out of boundary
 		int child_index = compare(array, index, lchild, rchild);
 		if(child_index >= 0){
 			swap(&array[index], &array[child_index]);
-			sinkDown(array, child_index);
+			sinkDown(array, child_index, offset);
 		}
 		else return;
 	}
 }
 
 // build heap starting from the second last level
-void buildHeap(int array[]){
-	for(int i = (size/2 - 1); i >= 0; i--){
-		sinkDown(array, i);
+void buildHeap(int array[], int offset){
+	for(int i = ((size - offset)/2 - 1); i >= 0; i--){
+		sinkDown(array, i, offset);
 	}
 }
 
 // sort array in increasing order
-/*void sort(int array[]){
-	bool swapped = false;
-	do{
-		swapped = false;
-		for(int i = 0; i < size - 1; i++){
-			if(array[i] > array[i+1]){
-				swap(&array[i], &array[i+1]);
-				swapped = true;
-			}
-		}	
-	}while(swapped);
-
-}*/
+void sort(int array[]){
+	for(int i = 1; i < size - 1; i++)
+		buildHeap(array + i, i);
+}
 
 // print out sorted array
 void print(int array[]){
@@ -88,6 +79,7 @@ void print(int array[]){
 		printf("%d ", array[i]);
 	}
 }
+
 
 int main(){
 	int numOfele;
@@ -100,11 +92,11 @@ int main(){
 	creatElement(array);
 
 	printf("Build heap:\n");
-	buildHeap(array);
+	buildHeap(array, 0);
 	print(array);
 
 	printf("\nStart:\n");
-	//sort(array);
-	//print(array);
+	sort(array);
+	print(array);
 	printf("\nDone");
 }
