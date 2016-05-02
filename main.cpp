@@ -10,6 +10,7 @@
 #include "heap-sort.cpp"
 #include "merge-sort.cpp"
 #include "quick-sort.cpp"
+#include "selection-sort.cpp"
 
 
 using namespace std;
@@ -43,6 +44,7 @@ int main(int argc, char* argv[]){
 	sortMap["heap"] = heapSort;
 	sortMap["merge"] = mergeSort;
 	sortMap["quick"] = quickSort;
+	sortMap["selection"] = selectionSort;
 
 	printf("Enter number of elements: ");
 	cin >> size;
