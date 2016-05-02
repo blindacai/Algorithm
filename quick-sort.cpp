@@ -1,25 +1,8 @@
-#include <iostream>
-#include <string>
-#include <cstdio>
-
-using namespace std;
-
-int size = 0;
-
-// fill array with user inputs
-void creatElement(int array[]){
-	for(int i = 0; i < size; i++){
-		cin >> array[i];
-	}
-}
-
-// swap array elements
-void swap(int* big, int* small){
-	int temp = *big;
-	*big = *small;
-	*small = temp;
-}
-
+/*
+p_index: index of the last element
+first: index of the first element
+POST: (smaller than array[p_index]), array[p_index], (larger than array[p_index])
+*/
 int partition(int array[], int p_index, int first){
 	int pivot = array[p_index];
 	int wall = first;
@@ -34,34 +17,11 @@ int partition(int array[], int p_index, int first){
 }
 
 // sort array in increasing order
-void sort(int array[], int first, int last){
+void quickSort(int array[], int first, int last){
 	if(first >= last) return;
 	else{
 		int wall = partition(array, last, first);
-		sort(array, first, wall - 1);
-		sort(array, wall + 1, last);
+		quickSort(array, first, wall - 1);
+		quickSort(array, wall + 1, last);
 	}
-}
-
-// print out sorted array
-void print(int array[]){
-	for(int i = 0; i < size; i++){
-		printf("%d ", array[i]);
-	}
-}
-
-int main(){
-	int numOfele;
-	printf("Enter number of elements: ");
-	cin >> numOfele;
-	int array[numOfele];
-	size = numOfele;
-
-	printf("Enter %d integers:\n", numOfele);
-	creatElement(array);
-
-	printf("Start:\n");
-	sort(array, 0, size - 1);
-	print(array);
-	printf("\nDone");
 }

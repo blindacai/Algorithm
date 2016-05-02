@@ -1,12 +1,22 @@
 #include <iostream>
 #include <string>
 #include <cstdio>
+#include <map>
+
+#include "utils.cpp"  // for the following sort to use functions in utils, why is it enough to just include it here once?
 
 #include "bubble-sort.cpp"
+#include "insertion-sort.cpp"
+#include "heap-sort.cpp"
+#include "merge-sort.cpp"
+#include "quick-sort.cpp"
+
 
 using namespace std;
 
 int size = 0;
+
+typedef void (*sortFun)(int array[], int, int);
 
 // fill array with user inputs
 void creatElement(int array[]){
@@ -27,17 +37,22 @@ void sort(void (*sortFun)(int*, int, int), int array[]){
 }
 
 int main(int argc, char* argv[]){
+	map<string, sortFun> sortMap;
+	sortMap["bubble"] = bubbleSort;
+	sortMap["insertion"] = insertionSort;
+	sortMap["heap"] = heapSort;
+	sortMap["merge"] = mergeSort;
+	sortMap["quick"] = quickSort;
+
 	printf("Enter number of elements: ");
 	cin >> size;
 	int array[size];
-
-	//cout << argv[1] << endl;
 
 	printf("Enter %d integers:\n", size);
 	creatElement(array);
 
 	printf("Start:\n");
-	sort(&bubbleSort, array);
+	sort(sortMap[string(argv[1])], array);
 	print(array);
 	printf("\nDone");
 }

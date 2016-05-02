@@ -1,21 +1,4 @@
-/*
-Divide and Conquer Merge Sort
-*/
-
-#include <iostream>
-#include <string>
-#include <cstdio>
-
-using namespace std;
-
-int size = 0;
-
-// fill array with user inputs
-void creatElement(int array[]){
-	for(int i = 0; i < size; i++){
-		cin >> array[i];
-	}
-}
+//Divide and Conquer Merge Sort
 
 
 /*
@@ -34,13 +17,11 @@ void merge(int array[], int first, int mid, int last){
 		if(left > mid){
 			for(int i = 0; i < (last - mid); i++, index++)
 				temp[index] = array[right + i];
-
 			break;
 		}
 		if(right > last){
 			for(int i = 0; i < (mid + 1 - first); i++, index++)
 				temp[index] = array[left + i];
-
 			break;
 		}
 		else{
@@ -62,36 +43,13 @@ void merge(int array[], int first, int mid, int last){
 	}				
 }
 
-void sort(int array[], int first, int last){
+void mergeSort(int array[], int first, int last){
 	if(first == last)
 		return;
 	else{
 		int mid = (first + last)/2;
-		sort(array, first, mid);
-		sort(array, mid+1, last);
+		mergeSort(array, first, mid);
+		mergeSort(array, mid+1, last);
 		merge(array, first, mid, last);
 	}
-}
-
-// print out sorted array
-void print(int array[]){
-	for(int i = 0; i < size; i++){
-		printf("%d ", array[i]);
-	}
-}
-
-int main(){
-	int numOfele;
-	printf("Enter number of elements: ");
-	cin >> numOfele;
-	int array[numOfele];
-	size = numOfele;
-
-	printf("Enter %d integers:\n", numOfele);
-	creatElement(array);
-
-	printf("Start:\n");
-	sort(array, 0, size-1);
-	print(array);
-	printf("\nDone");
 }

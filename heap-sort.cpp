@@ -1,25 +1,4 @@
-#include <iostream>
-#include <string>
-#include <cstdio>
-
-using namespace std;
-
-int size = 0;
-
-// fill array with user inputs
-void creatElement(int array[]){
-	for(int i = 0; i < size; i++){
-		cin >> array[i];
-	}
-}
-
-// swap array elements
-void swap(int* big, int* small){
-	int temp = *big;
-	*big = *small;
-	*small = temp;
-}
-
+int heap_size = 0;
 
 /*
 lchild, rchild: index of the left and right child
@@ -47,10 +26,10 @@ int compare(int array[], int index, int lchild, int rchild){
 
 // swap down elements to maintain min heap feature
 void sinkDown(int array[], int index, int offset){
-	if(index > ((size - offset)/2 - 1)) return;
+	if(index > ((heap_size - offset)/2 - 1)) return;
 	else{
 		int lchild = 2*index + 1;
-		int rchild = (2*index + 2 > (size - offset) - 1)? -1 : 2*index + 2;   // when size is even -> out of boundary
+		int rchild = (2*index + 2 > (heap_size - offset) - 1)? -1 : 2*index + 2;   // when size is even -> out of boundary
 		int child_index = compare(array, index, lchild, rchild);
 		if(child_index >= 0){
 			swap(&array[index], &array[child_index]);
@@ -62,41 +41,15 @@ void sinkDown(int array[], int index, int offset){
 
 // build heap starting from the second last level
 void buildHeap(int array[], int offset){
-	for(int i = ((size - offset)/2 - 1); i >= 0; i--){
+	for(int i = ((heap_size - offset)/2 - 1); i >= 0; i--){
 		sinkDown(array, i, offset);
 	}
 }
 
 // sort array in increasing order
-void sort(int array[]){
-	for(int i = 1; i < size - 1; i++)
+void heapSort(int array[], int first, int last){
+	heap_size = last + 1;
+	for(int i = 0; i < heap_size - 1; i++)
 		buildHeap(array + i, i);
 }
 
-// print out sorted array
-void print(int array[]){
-	for(int i = 0; i < size; i++){
-		printf("%d ", array[i]);
-	}
-}
-
-
-int main(){
-	int numOfele;
-	printf("Enter number of elements: ");
-	cin >> numOfele;
-	int array[numOfele];
-	size = numOfele;
-
-	printf("Enter %d integers:\n", numOfele);
-	creatElement(array);
-
-	printf("Build heap:\n");
-	buildHeap(array, 0);
-	print(array);
-
-	printf("\nStart:\n");
-	sort(array);
-	print(array);
-	printf("\nDone");
-}

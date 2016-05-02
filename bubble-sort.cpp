@@ -1,4 +1,3 @@
-#include "utils.cpp"
 
 // sort array in increasing order
 void bubbleSort(int array[], int first, int last){
