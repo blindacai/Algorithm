@@ -22,16 +22,22 @@ void print(int array[]){
 	}
 }
 
-int main(){
+void sort(void (*sortFun)(int*, int, int), int array[]){
+	(*sortFun)(array, 0 , size - 1);
+}
+
+int main(int argc, char* argv[]){
 	printf("Enter number of elements: ");
 	cin >> size;
 	int array[size];
+
+	//cout << argv[1] << endl;
 
 	printf("Enter %d integers:\n", size);
 	creatElement(array);
 
 	printf("Start:\n");
-	sort(array, 0, size - 1);
+	sort(&bubbleSort, array);
 	print(array);
 	printf("\nDone");
 }

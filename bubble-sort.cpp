@@ -1,7 +1,7 @@
 #include "utils.cpp"
 
 // sort array in increasing order
-void sort(int array[], int first, int last){
+void bubbleSort(int array[], int first, int last){
 	bool swapped = false;
 	do{
 		swapped = false;
