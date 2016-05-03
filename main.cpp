@@ -33,9 +33,9 @@ void print(int array[]){
 	}
 }
 
-void sort(void (*sortFun)(int*, int, int), int array[]){
+/*void sort(void (*sortFun)(int*, int, int), int array[]){
 	(*sortFun)(array, 0 , size - 1);
-}
+}*/
 
 int main(int argc, char* argv[]){
 	map<string, sortFun> sortMap;
@@ -54,7 +54,8 @@ int main(int argc, char* argv[]){
 	creatElement(array);
 
 	printf("Start:\n");
-	sort(sortMap[string(argv[1])], array);
+	//sort(sortMap[string(argv[1])], array);
+	sortMap[string(argv[1])](array, 0, size - 1);
 	print(array);
 	printf("\nDone");
 }
