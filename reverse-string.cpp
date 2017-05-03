@@ -1,4 +1,5 @@
 // input: {'a','b','c'} or "abc"
+// output: "cba"
 void reverse(char* str){
     char* end = str;
     char tmp;
