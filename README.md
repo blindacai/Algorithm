@@ -2,7 +2,7 @@
 
 using cygwin to compile c++ files
 
-remember to install g++/gcc/gdb while installing cygwin
+remember to install g++/gcc/gdb while installing cygwin (pay attention to pick the GNU one)
 
 how to switch to the drive where your code sit:
 
