@@ -1,4 +1,4 @@
-// 3. Add Two Numbers
+// Add Two Numbers
 
 /*
 Single linked list
@@ -17,6 +17,15 @@ struct ListNode {
 };
 
 int main(){
+
+}
+
+void createNode(string snode){
+    ListNode
+    for(int i = 0; i < snode.length(); i++){
+
+    }
+
     //ListNode* node1 = new ListNode(1);
     ListNode node1(0);
     ListNode* pNode1 = &node1;

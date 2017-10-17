@@ -1,4 +1,4 @@
-// 2. Reverse Integer
+// Reverse Integer
 
 /*
 Example:

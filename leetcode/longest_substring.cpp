@@ -8,6 +8,7 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
 */
 
 # include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ int lengthOfLongestSubstring_(string s) {
     }
 }
 
-int lengthOfLongestSubstring(string s){
+int lengthOfLongestSubstring_me(string s){
     if(s.length() == 0){
         return 0;
     }
@@ -62,9 +63,26 @@ int lengthOfLongestSubstring(string s){
         return longest;
     }
 }
-// Assume at position n, the substring 0...n-1 has the longest string without repeating chars
+// Assume at position n, the substring 0...n-1 has the longest substring without repeating chars
 // then if n is not duplicate with any chars in the longest substring ends at n-1
-// the new longest substring at n is prev + 1
+// the longest substring at n is prev + 1
+// oterwise it will be position of n - position of the duplicate
+
+
+int lengthOfLongestSubstring(string s){
+    vector<int> dict(256, -1);
+    int maxLen = 0, start = -1;
+    for (int i = 0; i != s.length(); i++) {
+        if (dict[s[i]] > start)
+            start = dict[s[i]];
+        dict[s[i]] = i;
+        maxLen = max(maxLen, i - start);
+    }
+    return maxLen;
+}
+// a better solution; Point: counter of the longest restarts when the current char to check is a duplicate;
+// meanwhile it saves the longest before the current char
+
 
 int main(){
     cout << lengthOfLongestSubstring("wpwpwpkew") << "\n";
