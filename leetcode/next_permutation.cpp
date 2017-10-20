@@ -68,15 +68,10 @@ void nextPermutation(vector<int>& nums){
     
     if(i > 0){
         int j = i - 1;
-        while(i < last && nums[j] >= nums[i]){
+        while(nums[j] >= nums[i]){
             i++;
         }
-        if(i == last + 1){
-            swap(nums[j], nums[last]);
-        }
-        else{
-            swap(nums[j], nums[i]);
-        }
+        swap(nums[j], nums[i]);
     }
 }
 
@@ -86,13 +81,26 @@ int main(){
     //int list[] = {5, 4, 3, 2, 1};
     //int list[] = {2, 3, 1};
     //int list[] = {1, 3, 2};
-    //int list[] = {6, 9, 5, 4, 3, 2, 1};
+    int list[] = {6, 9, 5, 4, 3, 2, 1};
     //int list[] = {6, 9, 8, 4, 3, 2, 1};
-    int list[] = {5, 1, 1};
+    //int list[] = {5, 1, 1};
     std::vector<int> nums ( list, list + sizeof(list) / sizeof(list[0]) );
     nextPermutation(nums);
-    print(nums);
+    //print(nums);
 }
+
+/*
+Side notes:
+int a = 6, b = 5;
+a = b--;
+
+Order of execution;
+a = b;
+b = b - 1;
+
+a: 5
+b: 4
+*/
 
 
 
