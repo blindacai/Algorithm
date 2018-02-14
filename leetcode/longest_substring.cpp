@@ -59,6 +59,7 @@ int lengthOfLongestSubstring(string s){
                 longest = prev_longest;
             }
         }
+        // test branch
         return longest;
     }
 }
